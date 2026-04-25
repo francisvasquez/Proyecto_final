@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Movie = require("../models/Movie");
 
-// 🔍 Obtener todas las películas
 router.get("/", async (req, res) => {
   try {
     const movies = await Movie.find();
@@ -12,16 +11,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ➕ Crear una o varias películas
 router.post("/", async (req, res) => {
   try {
-    // Si recibimos un array, guarda varias películas
+
     if (Array.isArray(req.body)) {
       const movies = await Movie.insertMany(req.body);
       return res.json(movies);
     }
 
-    // Si recibimos un solo objeto, guarda una película
     const nueva = new Movie(req.body);
     await nueva.save();
     res.json(nueva);
@@ -30,7 +27,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ❌ Eliminar película
 router.delete("/:id", async (req, res) => {
   try {
     await Movie.findByIdAndDelete(req.params.id);
@@ -40,7 +36,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// ✏️ Editar película
 router.put("/:id", async (req, res) => {
   try {
     const actualizada = await Movie.findByIdAndUpdate(
