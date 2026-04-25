@@ -12,9 +12,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ➕ Crear película
+// ➕ Crear una o varias películas
 router.post("/", async (req, res) => {
   try {
+    // Si recibimos un array, guarda varias películas
+    if (Array.isArray(req.body)) {
+      const movies = await Movie.insertMany(req.body);
+      return res.json(movies);
+    }
+
+    // Si recibimos un solo objeto, guarda una película
     const nueva = new Movie(req.body);
     await nueva.save();
     res.json(nueva);
@@ -33,13 +40,13 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// ✏️ Editar película (UPDATE)
+// ✏️ Editar película
 router.put("/:id", async (req, res) => {
   try {
     const actualizada = await Movie.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true } // devuelve la película actualizada
+      { new: true }
     );
 
     if (!actualizada) {

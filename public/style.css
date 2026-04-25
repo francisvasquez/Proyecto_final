@@ -11,73 +11,97 @@ body {
 }
 
 .container {
-  width: 90%;
-  max-width: 900px;
-  margin: 50px auto;
+  width: 95%;
+  max-width: 1300px;
+  margin: 30px auto;
   background: rgba(255, 255, 255, 0.08);
-  padding: 35px;
+  padding: 30px;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-  text-align: center;
 }
 
 h1 {
+  text-align: center;
   font-size: 42px;
   margin-bottom: 30px;
-  color: #ffffff;
 }
 
 h2 {
+  text-align: center;
   margin-top: 35px;
   font-size: 30px;
-  color: #ffffff;
 }
 
 form {
   display: grid;
-  gap: 15px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 input {
-  padding: 15px;
+  padding: 14px;
   border: none;
   border-radius: 10px;
   outline: none;
   font-size: 16px;
-  background: #ffffff;
-  color: #111;
 }
 
 input:focus {
   box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.5);
 }
 
+form button {
+  grid-column: 1 / -1;
+}
+
 button {
-  padding: 13px 22px;
+  padding: 12px 20px;
   border: none;
   border-radius: 10px;
-  background: #d2042d;
+  background: #d90429;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 button:hover {
   background: #ff1744;
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 23, 68, 0.6);
+  transform: scale(1.04);
+}
+
+#contadorPeliculas {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0 12px;
+}
+
+#buscador {
+  display: block;
+  width: 350px;
+  max-width: 100%;
+  margin: 0 auto 25px;
+}
+
+#listaPeliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  align-items: stretch;
 }
 
 .pelicula {
-  background: rgba(255, 255, 255, 0.12);
-  margin-top: 18px;
-  padding: 25px;
+  background: rgba(255, 255, 255, 0.13);
+  padding: 22px;
   border-radius: 15px;
-  border-left: 6px solid #d2042d;
-  transition: 0.3s ease;
+  border-left: 5px solid #d90429;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: 0.25s ease;
 }
 
 .pelicula:hover {
@@ -86,13 +110,13 @@ button:hover {
 }
 
 .pelicula h3 {
-  color: #ffffff;
-  font-size: 24px;
+  margin-top: 0;
+  font-size: 22px;
 }
 
 .pelicula p {
-  font-size: 18px;
-  color: #e6e6e6;
+  color: #e8e8e8;
+  line-height: 1.4;
 }
 
 .pelicula small {
@@ -100,9 +124,21 @@ button:hover {
 }
 
 .pelicula button {
-  margin: 10px 5px 0;
+  margin: 8px 6px 0 0;
 }
 
-.pelicula button:nth-child(2) {
-  background: #8b0000;
+@media (max-width: 850px) {
+  form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
 }
